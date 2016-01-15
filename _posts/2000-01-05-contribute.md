@@ -1,6 +1,6 @@
 ---
 title: "Contribute"
-bg: '#63BD2F'
+bg: orange
 color: white
 fa-icon: users
 ---
