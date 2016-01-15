@@ -259,8 +259,8 @@ nav ul li:hover, nav ul li.active {
 
 
 
-/* ----- fork on github banner ----- */
-#forkongithub a {
+/* ----- banner ----- */
+#banner a {
   color:#fff;
   text-decoration:none;
   font-family:arial,sans-serif;
@@ -272,13 +272,13 @@ nav ul li:hover, nav ul li.active {
   transition:.5s;
   padding:5px 40px;
 }
-#forkongithub a::before, #forkongithub a::after {
+#banner a::before, #banner a::after {
   content:""; width:100%; display:block; position:absolute;
   top:1px; left:0; height:1px; background:#fff;
 }
-#forkongithub a::after { bottom:1px; top:auto; }
+#banner a::after { bottom:1px; top:auto; }
 @media screen and (min-width:800px) {
-  #forkongithub {
+  #banner {
     position:fixed;
     display:block;
     top:0;
@@ -288,7 +288,7 @@ nav ul li:hover, nav ul li.active {
     height:200px;
     z-index:9999;
   }
-  #forkongithub a {
+  #banner a {
     width:200px;
     position:absolute;
     top:60px;
