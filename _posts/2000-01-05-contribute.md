@@ -1,5 +1,5 @@
 ---
-title: "join"
+title: "Contribute"
 bg: '#63BD2F'
 color: white
 fa-icon: users
@@ -13,6 +13,7 @@ fa-icon: users
     document.getElementById("sent").innerHTML = '<h2>Thank you for contacting us!</h2>';
   } else {
     document.getElementById("sent").innerHTML = "\
+      <h3>We're looking for people to contribute to the project</h3>\
       <form action='https://getsimpleform.com/messages?form_api_token=577e18e3c46aa7071a2c4bdbfe67c46b' method='post'>\
         <input type='hidden' name='redirect_to' value='http://memair.com/#sent' />\
         name:<br>\
