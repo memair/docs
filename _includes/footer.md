@@ -1,1 +1,1 @@
-[SinglePaged theme](https://github.com/t413/SinglePaged)
+[SinglePaged theme](https://github.com/t413/SinglePaged){:target="_blank"}
