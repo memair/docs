@@ -12,7 +12,7 @@ fa-icon: users
 Memair is looking for talent to contribute to the project. We are not yet in a position to offer salaries, instead, compensation will be in the form of ownership in Memair. Please [contact](/#contact) us if you would like to contribute. Checkout our [roadmap](https://trello.com/b/yroXVHZE/memair-roadmap){:target="_blank"} for project direction and priorities.
 
 ## Contribute user experience
-Memair has launched in Beta on Android! It's not polished, under documented, and the endpoints may change... but it's live and we would love to get feedback from real users! If you have an [Android 5.0+ device](http://whatismyandroidversion.com/){:target="_blank"}, please consider installing the [Beta App](https://play.google.com/apps/testing/com.sakthi.memair){:target="_blank"}. Otherwise, try the [web version](https://memair.herokuapp.com){:target="_blank"} while we work on developing the app on more platforms.
+Memair has launched in Beta on Android! It's not polished, under documented, and the endpoints may change... but it's live and we would love to get feedback from real users! If you have an [Android 5.0+ device](http://whatismyandroidversion.com/){:target="_blank"}, please consider installing the [Beta App](https://play.google.com/apps/testing/com.memair){:target="_blank"}. Otherwise, try the [web version](https://memair.herokuapp.com){:target="_blank"} while we work on developing the app on more platforms.
 
 ## Share Memair
 <center>
