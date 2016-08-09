@@ -16,7 +16,7 @@ permalink : /:year
 
 
 ### content configuration ###
-title:       "Memair"
+title:       "Memair - Cloud your mind"
 keywords:    "Extended mind, memex"
 description: "Extending our minds"
 favicon:     "img/favicon.ico"
@@ -33,6 +33,7 @@ colors:
   purple:    '#c869bf'
   orange:    '#fab125'
   turquoise: '#0fbfcf'
+  memair_blue: '#00a0dc'
 
 kramdown:
   auto_ids:  false
