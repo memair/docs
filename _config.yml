@@ -1,39 +1,41 @@
----
+# ----
+# Site
 
-port: 4000
-host: 0.0.0.0
-safe: false
+title: Memair API
+description: Memair API documentation.
+url: https://herokuapps.memair.com/api/
+api_url: https://herokuapps.memair.com/api/
 
+google_analytics_key:
+permalink: pretty
 
-### site serving configuration ###
-exclude: [CNAME, README.md, .gitignore]
-permalink: / ## disables post output
-timezone: null
-lsi: false
-markdown: kramdown
-highlighter: rouge
-permalink : /:year
+collections:
+  documentation:
+    title: Documentation
+    position: 1
+  authentication:
+    title: Authentication
+    position: 2
+  endpoints:
+    title: Endpoints
+    position: 3
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
+exclude:
+  - readme.md
+  - LICENCE
 
-### content configuration ###
-title:       "Memair - Cloud your mind"
-keywords:    "Extended mind, memex"
-description: "Extending our minds"
-favicon:     "img/favicon.ico"
-touch_icon:  "img/favicon.png"
-google_analytics_key: UA-28725137-5 ## put YOUR key here to enable tracking! (blank to disable)
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
 
-
-### template colors, used site-wide via css ###
-colors:
-  black:     '#111111'
-  white:     '#f8f8f8'
-  blue:      '#00a0dc'
-  green:     '#9bcf2f'
-  purple:    '#c869bf'
-  orange:    '#fab125'
-  turquoise: '#0fbfcf'
-  memair_blue: '#00a0dc'
-
-kramdown:
-  auto_ids:  false
+types:
+  - get
+  - put
+  - delete
+  - post
