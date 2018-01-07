@@ -30,18 +30,18 @@ right_code: |
   {: title="Response" }
 ---
 
-Lists all biometric_types.
+Lists all biometric types.
 
 This endpoint requires no authentication
 {: .info }
 
+~~~ bash
+curl -X GET {{ site.api_url }}v1/biometric_types
+~~~
+{: title="Curl" }
+
 ~~~ python
-r = requests.get("https://herokuapps.memair.com/api/v1/biometric_types")
+r = requests.get("{{ site.api_url }}v1/biometric_types")
 print r.text
 ~~~
 {: title="Python" }
-
-~~~ bash
-curl -X GET https://herokuapps.memair.com/api/v1/biometric_types
-~~~
-{: title="Curl" }

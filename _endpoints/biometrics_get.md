@@ -32,7 +32,7 @@ right_code: |
       "total_pages": 1
     },
     "user": {
-      "email": "greg@gho.st",
+      "email": "otto@gmeow.com",
       "id": 1
     }
   }
@@ -49,27 +49,27 @@ right_code: |
   {: title="Error" }
 ---
 page
-: Page number
+: Page number (default 1)
 
 per_page
-: Limits the number of biometrics returned per page
+: Limits the number of biometrics returned per page (default 1000)
 
-This call will return a maximum of 100 biometrics per page
+Default ordering is by descending timestamp
 {: .info }
 
 Lists all the users biometrics. You can paginate by using the parameters listed above.
 
+~~~ bash
+curl \
+  -F access_token=YOUR_ACCESS_TOKEN \
+  -F page=1 \
+  -F per_page=100 \
+  -X GET {{ site.api_url }}v1/biometrics
+~~~
+{: title="Curl" }
+
 ~~~ python
-r = requests.get("https://herokuapps.memair.com/api/v1/biometrics", token="YOUR_APP_KEY")
+r = requests.get("{{ site.api_url }}v1/biometrics", token="YOUR_APP_KEY")
 print r.text
 ~~~
 {: title="Python" }
-
-~~~ bash
-curl \
-  -F access_token=YOUR_APP_KEY \
-  -F page=1 \
-  -F per_page=100 \
-  -X GET https://herokuapps.memair.com/api/v1/biometrics
-~~~
-{: title="Curl" }

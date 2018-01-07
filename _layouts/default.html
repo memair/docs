@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="/css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="/js/main.js"></script>
+		<title>{{ site.title }}</title>
 		{% seo %}
 
 		{% if jekyll.environment == 'production' %}
@@ -23,7 +24,7 @@
 	<body>
 		<header>
 			<h1>
-				<a href="/"><img src="/images/memair_logo.png" height="40" alt="{{ site.title }} logo"></a>Memair API
+				<a href="/"><img src="/images/memair_logo.png" height="40" alt="{{ site.title }} logo"></a>{{ site.title }}
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 

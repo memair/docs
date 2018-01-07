@@ -1,9 +1,9 @@
 # ----
 # Site
 
-title: Memair API
+title: Memair Docs
 description: Memair API documentation.
-url: https://herokuapps.memair.com/api/
+app_url: https://herokuapps.memair.com/
 api_url: https://herokuapps.memair.com/api/
 
 google_analytics_key:

@@ -1,3 +1,11 @@
+<script>
+	var re = new RegExp("YOUR_ACCESS_TOKEN ", "g");
+	function replaceToken() {
+		 var token = document.getElementsByName('token')[0].value.replace(/<(?:.|\n)*?>/gm, '') + " ";
+		 document.body.innerHTML = document.body.innerHTML.replace(re, token);
+		 re = new RegExp(token, "g");
+	}
+</script>
 <div id="sidebar" class="sidebar">
 	{% assign sorted_collections = site.collections | sort: "position" %}
 	{% for collection in sorted_collections %}
@@ -18,4 +26,6 @@
 			</section>
 		{% endif %}
 	{% endfor %}
+	<h6>add to examples</h6>
+	<input class="form-control input-sm" type="text" name="token" placeholder="access token" onchange="replaceToken(this.value)">
 </div>
