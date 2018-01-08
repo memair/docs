@@ -6,7 +6,7 @@ description: Memair API documentation.
 app_url: https://herokuapps.memair.com/
 api_url: https://herokuapps.memair.com/api/
 
-google_analytics_key:
+google_analytics_key: UA-28725137-6
 permalink: pretty
 
 collections:
