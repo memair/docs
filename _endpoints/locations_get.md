@@ -75,12 +75,12 @@ Lists all the users locations meeting the given parameters. You can paginate by 
 
 ~~~ bash
 curl \
-  -F access_token=YOUR_ACCESS_TOKEN \
-  -F lat=42.0 \
-  -F long=42.0 \
-  -F distance=1000 \
-  -F page=1 \
-  -X GET {{ site.api_url }}v1/locations
+  -d access_token=YOUR_ACCESS_TOKEN \
+  -d lat=42.0 \
+  -d long=42.0 \
+  -d distance=1000 \
+  -d page=1 \
+  -G GET {{ site.api_url }}v1/locations
 ~~~
 {: title="Curl" }
 

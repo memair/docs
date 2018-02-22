@@ -62,10 +62,10 @@ Lists all the users emotions. You can paginate by using the parameters listed ab
 
 ~~~ bash
 curl \
-  -F access_token=YOUR_ACCESS_TOKEN \
-  -F page=1 \
-  -F per_page=100 \
-  -X GET {{ site.api_url }}v1/emotions
+  -d access_token=YOUR_ACCESS_TOKEN \
+  -d page=1 \
+  -d per_page=100 \
+  -G GET {{ site.api_url }}v1/emotions
 ~~~
 {: title="Curl" }
 

@@ -36,7 +36,7 @@ This endpoint requires no authentication
 {: .info }
 
 ~~~ bash
-curl -X GET {{ site.api_url }}v1/biometric_types
+curl {{ site.api_url }}v1/biometric_types
 ~~~
 {: title="Curl" }
 
