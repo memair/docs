@@ -2,7 +2,6 @@
 title: Request Access Token
 position: 4
 type: post
-description: Create Book
 right_code: |
   ~~~ json
   {
