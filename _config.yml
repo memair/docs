@@ -19,8 +19,8 @@ collections:
   graphql:
     title: GraphQL
     position: 3
-  endpoints:
-    title: Endpoints
+  rest:
+    title: REST Endpoints
     position: 4
 gems:
   - jekyll-sitemap
