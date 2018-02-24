@@ -16,9 +16,12 @@ collections:
   authentication:
     title: Authentication
     position: 2
+  graphql:
+    title: GraphQL
+    position: 3
   endpoints:
     title: Endpoints
-    position: 3
+    position: 4
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag

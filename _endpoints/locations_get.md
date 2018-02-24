@@ -68,6 +68,9 @@ lon
 distance
 : Distance in meters for geo queries (must be used with lat and lon)
 
+access_token
+: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access_token) for more details
+
 Default ordering is by descending timestamp
 {: .info }
 
@@ -85,7 +88,7 @@ curl \
 {: title="Curl" }
 
 ~~~ python
-r = requests.get("{{ site.api_url }}v1/locations", token="YOUR_APP_KEY")
+r = requests.get("{{ site.api_url }}v1/locations?access_token=YOUR_APP_KEY")
 print r.text
 ~~~
 {: title="Python" }

@@ -37,6 +37,9 @@ right_code: |
   ~~~
   {: title="Error" }
 ---
+
+**Deprecation Notice:** This endpoint will deprecated and replaced with a [GraphQL](/#graphqlgraphql) equivalent.
+
 *emotion slug*
 : Emotion slug with reading (see emotion types endpoint for available slugs)
 
@@ -48,6 +51,9 @@ source
 
 notes
 : Additional notes regarding the emotion
+
+access_token
+: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access_token) for more details
 
 Adds a emotion reading to users memair.
 
@@ -62,7 +68,13 @@ curl \
 {: title="Curl" }
 
 ~~~ python
-r = requests.get("{{ site.api_url }}v1/emotions", token="YOUR_APP_KEY")
+data = {
+  'happy' : 5.0,
+  'anguish': 4.5,
+  'timestamp': '2018-01-01 00:00:00',
+  'access_token': 'YOUR_APP_KEY'
+}
+r = requests.post("{{ site.api_url }}v1/emotions", data)
 print r.text
 ~~~
 {: title="Python" }

@@ -37,6 +37,9 @@ right_code: |
   ~~~
   {: title="Error" }
 ---
+
+**Deprecation Notice:** This endpoint will deprecated and replaced with a [GraphQL](/#graphqlgraphql) equivalent.
+
 *biometric slug*
 : Biometric slug with reading (see biometric types endpoint for available slugs)
 
@@ -49,12 +52,15 @@ source
 notes
 : Additional notes regarding the biometric
 
+access_token
+: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access_token) for more details
+
 Adds a biometric reading to users memair.
 
 ~~~ bash
 curl \
   -F 'weight=5.0' \
-  -F 'internal_body_temp=8.1' \
+  -F 'internal_body_temp=36.9' \
   -F 'timestamp=2018-01-01 00:00:00' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.api_url }}v1/biometrics
@@ -62,7 +68,13 @@ curl \
 {: title="Curl" }
 
 ~~~ python
-r = requests.get("{{ site.api_url }}v1/biometrics", token="YOUR_APP_KEY")
+data = {
+  'weight' : 80,
+  'internal_body_temp': 36.9,
+  'timestamp': '2018-01-01 00:00:00',
+  'access_token': 'YOUR_APP_KEY'
+}
+r = requests.post("{{ site.api_url }}v1/biometrics", data)
 print r.text
 ~~~
 {: title="Python" }

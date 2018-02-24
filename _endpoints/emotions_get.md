@@ -49,11 +49,17 @@ right_code: |
   ~~~
   {: title="Error" }
 ---
+
+**Deprecation Notice:** This endpoint will deprecated and replaced with a [GraphQL](/#graphqlgraphql) equivalent.
+
 page
 : Page number (default 1)
 
 per_page
 : Limits the number of emotions returned per page (default 1000)
+
+access_token
+: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access_token) for more details
 
 Default ordering is by descending timestamp
 {: .info }
@@ -70,7 +76,7 @@ curl \
 {: title="Curl" }
 
 ~~~ python
-r = requests.get("{{ site.api_url }}v1/emotions", token="YOUR_APP_KEY")
+r = requests.get("{{ site.api_url }}v1/emotions?access_token=YOUR_APP_KEY")
 print r.text
 ~~~
 {: title="Python" }

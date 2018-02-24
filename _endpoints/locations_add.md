@@ -65,6 +65,9 @@ Speed
 source
 : Source of location
 
+access_token
+: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access_token) for more details
+
 Adds a location to users memair.
 
 ~~~ bash
@@ -78,7 +81,13 @@ curl \
 {: title="Curl" }
 
 ~~~ python
-r = requests.get("{{ site.api_url }}v1/locations", token="YOUR_APP_KEY")
+data = {
+  'latitude' : 42,
+  'longitude': 42,
+  'timestamp': '2018-01-01 00:00:00',
+  'access_token': 'YOUR_APP_KEY'
+}
+r = requests.post("{{ site.api_url }}v1/locations", data)
 print r.text
 ~~~
 {: title="Python" }
