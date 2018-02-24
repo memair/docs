@@ -2,7 +2,7 @@
 title: /physical_activity_types
 position: 4.0
 type: get
-description: List all Physical Activity Types
+description: Lists all Physical Activity Types
 right_code: |
   ~~~ json
   {
@@ -25,8 +25,6 @@ right_code: |
   ~~~
   {: title="Response" }
 ---
-
-Lists all physical activity types.
 
 This endpoint requires no authentication
 {: .info }

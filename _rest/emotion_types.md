@@ -2,7 +2,7 @@
 title: /emotion_types
 position: 2.0
 type: get
-description: List all Emotion Types
+description: Lists all Emotion Types
 right_code: |
   ~~~ json
   {
@@ -31,8 +31,6 @@ right_code: |
   ~~~
   {: title="Response" }
 ---
-
-Lists all emotion types.
 
 This endpoint requires no authentication
 {: .info }

@@ -2,7 +2,7 @@
 title: /biometric_types
 position: 1.0
 type: get
-description: List all Biometric Types
+description: Lists all Biometric Types
 right_code: |
   ~~~ json
   {
@@ -29,8 +29,6 @@ right_code: |
   ~~~
   {: title="Response" }
 ---
-
-Lists all biometric types.
 
 This endpoint requires no authentication
 {: .info }
