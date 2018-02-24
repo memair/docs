@@ -74,7 +74,8 @@ data = {
   'timestamp': '2018-01-01 00:00:00',
   'access_token': 'YOUR_APP_KEY'
 }
+import requests
 r = requests.post("{{ site.api_url }}v1/biometrics", data)
-print r.text
+print(r.text)
 ~~~
 {: title="Python" }

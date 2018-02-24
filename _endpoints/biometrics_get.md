@@ -75,7 +75,8 @@ curl \
 {: title="Curl" }
 
 ~~~ python
+import requests
 r = requests.get("{{ site.api_url }}v1/biometrics?access_token=YOUR_APP_KEY")
-print r.text
+print(r.text)
 ~~~
 {: title="Python" }

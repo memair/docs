@@ -43,7 +43,8 @@ curl {{ site.api_url }}v1/emotion_types
 {: title="Curl" }
 
 ~~~ python
+import requests
 r = requests.get("{{ site.api_url }}v1/emotion_types")
-print r.text
+print(r.text)
 ~~~
 {: title="Python" }

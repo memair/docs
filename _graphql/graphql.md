@@ -63,7 +63,8 @@ data = {
   'query' : '{Biometrics {value, timestamp, biometric_type {name}}}',
   'access_token': 'YOUR_APP_KEY'
 }
+import requests
 r = requests.post("{{ site.app_url }}/graphql", data)
-print r.text
+print(r.text)
 ~~~
 {: title="Python" }

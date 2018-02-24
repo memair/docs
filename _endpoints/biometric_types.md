@@ -41,7 +41,8 @@ curl {{ site.api_url }}v1/biometric_types
 {: title="Curl" }
 
 ~~~ python
+import requests
 r = requests.get("{{ site.api_url }}v1/biometric_types")
-print r.text
+print(r.text)
 ~~~
 {: title="Python" }
