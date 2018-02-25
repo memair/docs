@@ -18,7 +18,5 @@ Gamma endpoints have been throughly tested. Any non backward compatible changes 
 
 The following endpoints will be deprecated and replaced with [GraphQL](/#graphqlgraphql) equivalents.
 
-* [api/v1/biometrics_get](#restbiometrics_get)
-* [api/v1/biometrics_add](#restsbiometrics_add)
-* [api/v1/emotions_get](#restsemotions_get)
-* [api/v1/emotions_add](#restsemotions_add)
+* [api/v1/biometrics](#restbiometrics_get)
+* [api/v1/emotions](#restsemotions_get)
