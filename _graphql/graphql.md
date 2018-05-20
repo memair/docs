@@ -11,16 +11,12 @@ right_code: |
         {
           "value": 37.8,
           "timestamp": "2018-01-01T00:00:00Z",
-          "biometric_type": {
-            "name": "Internal Body Temperature"
-          }
+          "type": "Internal Body Temperature"
         },
         {
           "value": 80,
           "timestamp": "2018-01-01T00:00:00Z",
-          "biometric_type": {
-            "name": "Weight"
-          }
+          "type": "Weight"
         }
       ]
     }
@@ -52,7 +48,7 @@ access_token
 
 ~~~ bash
 curl \
-  -F query='{Biometrics {value, timestamp, biometric_type {name}}}' \
+  -F query='{Biometrics {value, timestamp, type}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}/graphql
 ~~~
@@ -60,7 +56,7 @@ curl \
 
 ~~~ python
 data = {
-  'query' : '{Biometrics {value, timestamp, biometric_type {name}}}',
+  'query' : '{Biometrics {value, timestamp, type}',
   'access_token': 'YOUR_APP_KEY'
 }
 import requests
