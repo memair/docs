@@ -5,4 +5,6 @@ position: 4
 
 Find a Bug and I'll buy you a beer 🍻 and give you an honourable mention here.
 
-So far there have been no bugs submitted.
+#### Bugs
+
+* GraphiQL sometimes hangs on "Loading...", temporary fix is to hit refresh
