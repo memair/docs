@@ -1,6 +1,6 @@
 ---
 title: GraphiQL
-position: 1.0
+position: 2.0
 description: An interactive console for GraphQL
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: /bulk/locations
-position: 3.2
+position: 2.0
 type: post
 description: Create Bulk Locations
 right_code: |
@@ -54,7 +54,7 @@ curl \
 ~~~ python
 data = {
   'json' : '[{"latitude": 42, "longitude": 42, "timestamp": "2018-01-01 00:00:00"}, {"latitude": 42, "longitude": 42, "timestamp": "2018-01-01 00:05:00", "point_accuracy": 100}]',
-  'access_token': 'YOUR_APP_KEY'
+  'access_token': 'YOUR_ACCESS_TOKEN'
 }
 import requests
 r = requests.post("{{ site.api_url }}v1/bulk/locations", data)

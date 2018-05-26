@@ -1,8 +1,8 @@
 ---
-title: /graphql
-position: 1.1
+title: Example Query
+position: 3.0
 type: post
-description: A query language for Memair
+description: Example auth and queries for Memair
 right_code: |
   ~~~ json
   {
@@ -48,19 +48,19 @@ access_token
 
 ~~~ bash
 curl \
-  -F query='{Biometrics {value, timestamp, type}}' \
+  -F query='{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
-  -X POST {{ site.app_url }}/graphql
+  -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
 
 ~~~ python
 data = {
-  'query' : '{Biometrics {value, timestamp, type}',
-  'access_token': 'YOUR_APP_KEY'
+  'query' : '{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}',
+  'access_token': 'YOUR_ACCESS_TOKEN'
 }
 import requests
-r = requests.post("{{ site.app_url }}/graphql", data)
+r = requests.post("{{ site.app_url }}graphql", data)
 print(r.text)
 ~~~
 {: title="Python" }

@@ -19,9 +19,12 @@ collections:
   graphql:
     title: GraphQL
     position: 3
+  models:
+    title: Models
+    position: 4
   rest:
     title: REST Endpoints
-    position: 4
+    position: 5
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag
@@ -42,3 +45,7 @@ types:
   - put
   - delete
   - post
+  - alpha
+  - beta
+  - gamma
+  - deprecated

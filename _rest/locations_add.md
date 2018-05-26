@@ -1,6 +1,6 @@
 ---
 title: /locations
-position: 3.2
+position: 1.0
 type: post
 description: Create Location
 right_code: |
@@ -85,7 +85,7 @@ data = {
   'latitude' : 42,
   'longitude': 42,
   'timestamp': '2018-01-01 00:00:00',
-  'access_token': 'YOUR_APP_KEY'
+  'access_token': 'YOUR_ACCESS_TOKEN'
 }
 import requests
 r = requests.post("{{ site.api_url }}v1/locations", data)

@@ -240,6 +240,34 @@ h3 .endpoint {
 	}
 }
 
+.endpoint.alpha {
+	color: #7E57C2;
+	&:after {
+		content: "ALPHA";
+	}
+}
+
+.endpoint.beta {
+	color: #42A5F5;
+	&:after {
+		content: "BETA";
+	}
+}
+
+.endpoint.gamma {
+	color: #66BB6A;
+	&:after {
+		content: "GAMMA";
+	}
+}
+
+.endpoint.deprecated {
+	color: #FF7043;
+	&:after {
+		content: "DEPRECATED";
+	}
+}
+
 .main {
 	margin: 0 0 0 210px;
 	border-left: 1px solid #eee;
