@@ -2,6 +2,7 @@
 title: Physical Activities
 position: 3.0
 type: beta
+description: Models defined physical activities
 right_code: |
   ~~~ json
   {

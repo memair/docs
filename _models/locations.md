@@ -2,6 +2,7 @@
 title: Locations
 position: 2.0
 type: gamma
+description: Models user geospatially
 right_code: |
   ~~~ json
   {
@@ -25,26 +26,34 @@ right_code: |
   {: title="Response" }
 ---
 
-This model is used to store user location data.
+lat
+: Latitude
 
-#### Model
+lon
+: Longitude
+
+timestamp
+: Timestamp of location
+
+altitude
+: Altitude (meters)
+
+point_accuracy
+: Point Accuracy (meters)
+
+altitude_accuracy
+: Altitude Accuracy (meters)
+
+heading
+: Heading (degrees from north)
+
+speed
+: Speed (meters per second)
+
+source
+: Source of location
 
 Grain: 1 row per location type per timestamp. Duplicates will be deleted leaving the latest version.
-
-| Name | Type | Notes |
-|-------|--------|---------|
-| id | integer | assigned by memair |
-| lat | integer | required |
-| lon | integer | required |
-| timestamp | timestamp | assigned by memair if null |
-| altitude | integer | in meters & nullable |
-| altitude_accuracy | integer | in meters & nullable |
-| heading | integer | nullable |
-| point_accuracy | integer | in meters & nullable |
-| timezone | string | assigned by memair |
-| source | string | nullable |
-| notes | string | nullable |
-| updated_at | timestamp | assigned by memair |
 
 #### Example interactions
 
