@@ -3,7 +3,6 @@ title: Proposed Models
 position: 1000.0
 description: A list of proposed models
 ---
-
 Please [contact](http://blog.memair.com/contact) us if you have suggestions for new models or would like us to focus on currently proposed models.
 
 * Bio functions
@@ -26,7 +25,9 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
   - Idea
   - Memoir
   - Observation?
+  - Prediction?
   - Thought
+  - Value
 * Physical sensations
   - Throbbing in right foot
   - Sharp pain in front left brain
