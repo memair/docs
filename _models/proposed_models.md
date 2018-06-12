@@ -25,6 +25,7 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
   - Goal
   - Idea
   - Memoir
+  - Observation?
   - Thought
 * Physical sensations
   - Throbbing in right foot
