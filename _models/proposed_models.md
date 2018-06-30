@@ -18,13 +18,14 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
 * Injection
   - Flu shot (LAIV)
   - Morphine 20mg
-* Memory
+* Memories
+  - Anecdote
   - Belief
+  - Concept
   - Dreams
   - Goal
   - Idea
-  - Memoir
-  - Observation?
+  - Observation
   - Prediction?
   - Thought
   - Value
