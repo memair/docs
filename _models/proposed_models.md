@@ -18,16 +18,16 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
 * Injection
   - Flu shot (LAIV)
   - Morphine 20mg
-* Memories
+* Thoughts
   - Anecdote
   - Belief
   - Concept
-  - Dreams
+  - Dream
   - Goal
   - Idea
+  - Memory
   - Observation
-  - Prediction?
-  - Thought
+  - Prediction
   - Value
 * Physical sensations
   - Throbbing in right foot
