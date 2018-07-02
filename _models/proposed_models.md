@@ -18,7 +18,7 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
 * Injection
   - Flu shot (LAIV)
   - Morphine 20mg
-* Thoughts
+* Journal
   - Anecdote
   - Belief
   - Concept
@@ -27,7 +27,12 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
   - Idea
   - Memory
   - Observation
+  - Opinion
   - Prediction
+  - Principle
+  - Proposition
+  - Reflection
+  - Thought
   - Value
 * Physical sensations
   - Throbbing in right foot
