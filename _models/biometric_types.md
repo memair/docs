@@ -54,7 +54,7 @@ Grain: 1 row per biometric type
 curl \
   -F query='{BiometricTypes{slug}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
-  -X POST {{ site.app_url }}/graphql
+  -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
 

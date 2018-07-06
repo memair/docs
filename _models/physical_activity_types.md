@@ -47,7 +47,7 @@ Grain: 1 row per physical activity type
 curl \
   -F query='{PhysicalActivityTypes{slug}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
-  -X POST {{ site.app_url }}/graphql
+  -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
 

@@ -77,6 +77,6 @@ mutation {
 curl \
   -F query='{PhysicalActivities(first: 50, order: timestamp_desc, type: all) {timestamp, physical_activity_type {name}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
-  -X POST {{ site.app_url }}/graphql
+  -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }

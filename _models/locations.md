@@ -86,6 +86,6 @@ mutation {
 curl \
   -F query='{Locations(first: 50, order: timestamp_desc) {lat, lon, timestamp}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
-  -X POST {{ site.app_url }}/graphql
+  -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }

@@ -75,6 +75,6 @@ mutation {
 curl \
   -F query='{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
-  -X POST {{ site.app_url }}/graphql
+  -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
