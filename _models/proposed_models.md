@@ -18,22 +18,6 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
 * Injection
   - Flu shot (LAIV)
   - Morphine 20mg
-* Journal
-  - Anecdote
-  - Belief
-  - Concept
-  - Dream
-  - Goal
-  - Idea
-  - Memory
-  - Observation
-  - Opinion
-  - Prediction
-  - Principle
-  - Proposition
-  - Reflection
-  - Thought
-  - Value
 * Physical sensations
   - Throbbing in right foot
   - Sharp pain in front left brain
