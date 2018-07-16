@@ -61,7 +61,7 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 {
-  Locations(first: 50, order: timestamp_desc) {
+  Locations(first: 50, order: timestamp_desc, , within: "42,42,100") {
     lat
     lon
     timestamp
