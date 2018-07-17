@@ -61,7 +61,7 @@ jQuery(function() {
 			$('.sidebar a').removeClass('active');
 				var $closest = getClosestHeader();
 				$closest.addClass('active');
-				document.title = $closest.text();
+				document.title = $closest.text() + ' | Memair';
 
 	}
 });
