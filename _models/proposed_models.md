@@ -8,9 +8,6 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
 * Bio functions
   - Passed gas
   - Menstruated
-* Digital activities
-  - Visited website
-  - Took photo
 * Ingestion
   - An apple
   - Meclizine 25mg
