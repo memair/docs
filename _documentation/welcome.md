@@ -8,3 +8,5 @@ Welcome to the Memair API documentation.
 This API document is designed for those interested in developing on our platform. Memair is continuously under development and this API will evolve.
 
 Memair stores user's data in structured models. Memair data models are designed to extract maximum insight for users.
+
+Found an error or have suggestions for these docs? Please submit a PR to the [docs repo](https://github.com/memair/memair.github.io).
