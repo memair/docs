@@ -12,7 +12,7 @@ Alpha endpoints are in active development and will likely change or become depre
 Beta endpoints are being tested more widely with beta users and are unlikely to change. Any non backward compatible changes or deprecation will have at least 4 weeks notice.
 
 #### Gamma endpoints
-Gamma endpoints have been throughly tested. Any non backward compatible changes or deprecation will have at least 6 months notice.
+Gamma endpoints have been thoroughly tested. Any non backward compatible changes or deprecation will have at least 6 months notice.
 
 ### Notices
 
