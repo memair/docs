@@ -1,6 +1,6 @@
 ---
 title: Locations
-position: 2.0
+position: 5.0
 type: gamma
 description: Models user geospatially
 right_code: |
@@ -24,6 +24,20 @@ right_code: |
   }
   ~~~
   {: title="Response" }
+
+  ~~~ json
+  {
+    "data": None,
+    "errors": [
+      {
+        "message": "Please limit requests to 10000 records",
+        "locations": [{"line": 3, "column": 3}],
+        "path": ["Locations"]
+      }
+    ]
+  }
+  ~~~
+  {: title="Error" }
 ---
 
 lat
@@ -89,3 +103,13 @@ curl \
   -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
+
+~~~ python
+from memair import Memair
+
+user = Memair('YOUR_ACCESS_TOKEN')
+query = "{Locations(first: 50, order: timestamp_desc) {lat, lon, timestamp}}"
+response = user.query(query)
+print(response)
+~~~
+{: title="Python" }

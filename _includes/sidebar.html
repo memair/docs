@@ -1,5 +1,5 @@
 <script>
-	var re = new RegExp("YOUR_ACCESS_TOKEN ", "g");
+	var re = new RegExp("YOUR_ACCESS_TOKEN", "g");
 	function replaceToken() {
 		 var token = document.getElementsByName('token')[0].value.replace(/<(?:.|\n)*?>/gm, '') + " ";
 		 document.body.innerHTML = document.body.innerHTML.replace(re, token);

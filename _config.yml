@@ -22,9 +22,6 @@ collections:
   models:
     title: Models
     position: 4
-  rest:
-    title: REST Endpoints
-    position: 5
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag

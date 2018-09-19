@@ -20,9 +20,23 @@ right_code: |
   }
   ~~~
   {: title="Response" }
+
+  ~~~ json
+  {
+    "data": None,
+    "errors": [
+      {
+        "message": "Please limit requests to 10000 records",
+        "locations": [{"line": 3, "column": 3}],
+        "path": ["Biometrics"]
+      }
+    ]
+  }
+  ~~~
+  {: title="Error" }
 ---
 
-This model is used to store user data for defined [biometric types](/#modelsbiometric_types) like blood pressure, weight, body temperature.
+This model is used to store user data for defined biometric types like blood pressure, weight, or body temperature. A full list of biometric types can be accessed using the `BiometricTypes` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/biometric_types.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/biometric_types.yml) or [contact us](https://blog.memair.com/community/contact) to add biometric types.
 
 #### Model
 
@@ -31,7 +45,7 @@ Grain: 1 row per biometric type per timestamp. Duplicates will be deleted leavin
 | Name | Type | Notes |
 |-------|--------|---------|
 | id | integer | assigned by memair |
-| biometric_type | [biometric type](/#modelsbiometric_types) | required |
+| biometric_type | biometric type | required |
 | value | integer | required |
 | timestamp | timestamp | assigned by memair if null |
 | source | string | nullable |
@@ -78,3 +92,13 @@ curl \
   -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
+
+~~~ python
+from memair import Memair
+
+user = Memair('YOUR_ACCESS_TOKEN')
+query = "{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}"
+response = user.query(query)
+print(response)
+~~~
+{: title="Python" }

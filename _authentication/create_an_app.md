@@ -1,6 +1,6 @@
 ---
 title: Create an App
-position: 2
+position: 3
 ---
 
 Log into the [Memair App]({{ site.app_url}}users/sign_in)
