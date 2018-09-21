@@ -3,7 +3,7 @@ title: Deprecation Policy
 position: 3
 ---
 
-Memair adheres to a deprecation schedule however, any endpoint or data structure may be changed or deprecated if there is a security issue. Currently all endpoints are Beta (except for those with deprecation notices).
+Memair adheres to a deprecation schedule however, any endpoint or data structure may be changed or deprecated if there is a security issue.
 
 #### Alpha endpoints
 Alpha endpoints are in active development and will likely change or become deprecated.
