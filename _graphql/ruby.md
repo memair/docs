@@ -59,4 +59,4 @@ query = """
 response = user.query(query)
 puts response
 ~~~
-{: title="Python" }
+{: title="Ruby" }
