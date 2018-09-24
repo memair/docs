@@ -1,17 +1,17 @@
 ---
-title: Python Example
-position: 4.0
-description: Example pythonn queries for Memair
+title: Ruby Example
+position: 5.0
+description: Example Ruby queries for Memair
 right_code: |
   ~~~ json
   {
-    'data': {
-      'Biometrics': [{
-        'timestamp': '2018-09-16T23:20:58Z',
-        'value': 100.0,
-        'biometric_type': {
-          'name': 'Body Weight',
-          'unit': 'Kilogram'
+    "data": {
+      "Biometrics": [{
+        "timestamp": "2018-09-16T23:20:58Z",
+        "value": 100.0,
+        "biometric_type": {
+          "name": "Body Weight",
+          "unit": "Kilogram"
         }
       }]
     }
@@ -34,12 +34,12 @@ right_code: |
   {: title="Error" }
 ---
 
-Memiar offers a [Python3 package](https://pypi.org/project/memair/) to simplify GraphQL queries and mutations.
+Memiar offers a [Ruby gem](https://rubygems.org/gems/memair) to simplify GraphQL queries and mutations.
 
-~~~ python
-from memair import Memair
+~~~ ruby
+require 'memair'
 
-user = Memair('YOUR_ACCESS_TOKEN')
+user = Memair.new('YOUR_ACCESS_TOKEN')
 query = """
 {
   Biometrics(
@@ -57,6 +57,6 @@ query = """
   }
 }"""
 response = user.query(query)
-print(response)
+puts response
 ~~~
 {: title="Python" }

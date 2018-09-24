@@ -1,6 +1,6 @@
 ---
 title: Other Examples
-position: 5.0
+position: 99.0
 description: Other Examples for GraphQL queries using Memair
 ---
 
