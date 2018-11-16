@@ -57,7 +57,7 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 {
-  Emotions(first: 1, order: timestamp_desc, type: happy) {
+  Emotions(first: 1, order: desc, order_by: timestamp, type: happy) {
     timestamp
     intensity
     emotion_type {
@@ -84,7 +84,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -F query='{Emotions(first: 1 order: timestamp_desc type: happy) {timestamp intensity emotion_type {name}}}' \
+  -F query='{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}graphql
 ~~~
@@ -94,7 +94,7 @@ curl \
 from memair import Memair
 
 user = Memair('YOUR_ACCESS_TOKEN')
-query = "{Emotions(first: 1 order: timestamp_desc type: happy) {timestamp intensity emotion_type {name}}}"
+query = "{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}"
 response = user.query(query)
 print(response)
 ~~~

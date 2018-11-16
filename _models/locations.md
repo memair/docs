@@ -75,7 +75,7 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 {
-  Locations(first: 50, order: timestamp_desc, within: "42,42,100") {
+  Locations(first: 50, order: desc, order_by: timestamp, within: "42,42,100") {
     lat
     lon
     timestamp
@@ -98,7 +98,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -F query='{Locations(first: 50, order: timestamp_desc) {lat, lon, timestamp}}' \
+  -F query='{Locations(first: 50, order: desc, order_by: timestamp) {lat, lon, timestamp}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}graphql
 ~~~
@@ -108,7 +108,7 @@ curl \
 from memair import Memair
 
 user = Memair('YOUR_ACCESS_TOKEN')
-query = "{Locations(first: 50, order: timestamp_desc) {lat, lon, timestamp}}"
+query = "{Locations(first: 50, order: desc, order_by: timestamp) {lat, lon, timestamp}}"
 response = user.query(query)
 print(response)
 ~~~

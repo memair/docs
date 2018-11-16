@@ -58,7 +58,7 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 {
-  Biometrics(first: 1, order: timestamp_desc, type: weight) {
+  Biometrics(first: 1, order: desc, order_by: timestamp, type: weight) {
     timestamp
     value
     biometric_type {
@@ -87,7 +87,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -F query='{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}' \
+  -F query='{Biometrics(first: 1 order: desc order_by: timestamp type: weight) {timestamp value biometric_type {name unit}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}graphql
 ~~~
@@ -97,7 +97,7 @@ curl \
 from memair import Memair
 
 user = Memair('YOUR_ACCESS_TOKEN')
-query = "{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}"
+query = "{Biometrics(first: 1 order: desc order_by: timestamp type: weight) {timestamp value biometric_type {name unit}}}"
 response = user.query(query)
 print(response)
 ~~~

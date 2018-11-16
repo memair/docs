@@ -57,7 +57,7 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 {
-  Journals(first: 1, order: timestamp_desc, type: idea) {
+  Journals(first: 1, order: desc, order_by: timestamp, type: idea) {
     timestamp
     document
     journal_type {
@@ -84,7 +84,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -F query='{Journals(first: 1 order: timestamp_desc type: idea) {timestamp document journal_type {name}}}' \
+  -F query='{Journals(first: 1 order: desc order_by: timestamp type: idea) {timestamp document journal_type {name}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}graphql
 ~~~
@@ -94,7 +94,7 @@ curl \
 from memair import Memair
 
 user = Memair('YOUR_ACCESS_TOKEN')
-query = "{Journals(first: 1 order: timestamp_desc type: idea) {timestamp document journal_type {name}}}"
+query = "{Journals(first: 1 order: desc order_by: timestamp type: idea) {timestamp document journal_type {name}}}"
 response = user.query(query)
 print(response)
 ~~~

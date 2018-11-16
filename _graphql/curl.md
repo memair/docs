@@ -43,7 +43,7 @@ access_token
 
 ~~~ bash
 curl \
-  -F query='{Biometrics(first: 1 order: timestamp_desc type: weight) {timestamp value biometric_type {name unit}}}' \
+  -F query='{Biometrics(first: 1 order: desc order_by: timestamp type: weight) {timestamp value biometric_type {name unit}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}graphql
 ~~~

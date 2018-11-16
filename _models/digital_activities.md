@@ -65,7 +65,7 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 {
-  DigitalActivities(first: 50, order: timestamp_desc, type: all) {
+  DigitalActivities(first: 50, order: desc, order_by: timestamp, type: all) {
     timestamp
     digital_activity_type {
       name
@@ -89,7 +89,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -F query='{DigitalActivities(first: 50, order: timestamp_desc, type: all) {timestamp, digital_activity_type {name}}}' \
+  -F query='{DigitalActivities(first: 50, order: desc, order_by: timestamp, type: all) {timestamp, digital_activity_type {name}}}' \
   -F access_token=YOUR_ACCESS_TOKEN \
   -X POST {{ site.app_url }}graphql
 ~~~
@@ -99,7 +99,7 @@ curl \
 from memair import Memair
 
 user = Memair('YOUR_ACCESS_TOKEN')
-query = "{DigitalActivities(first: 50, order: timestamp_desc, type: all) {timestamp, digital_activity_type {name}}}"
+query = "{DigitalActivities(first: 50, order: desc, order_by: timestamp, type: all) {timestamp, digital_activity_type {name}}}"
 response = user.query(query)
 print(response)
 ~~~

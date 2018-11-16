@@ -44,7 +44,8 @@ query = """
 {
   Biometrics(
     first: 1
-    order: timestamp_desc
+    order: desc
+    order_by: timestamp
     type: weight
   )
   {
