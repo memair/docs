@@ -1,6 +1,6 @@
 ---
 title: Digital Activities
-position: 2.0
+position: 22.0
 type: gamma
 description: Models defined digital activities
 right_code: |
@@ -55,6 +55,7 @@ Grain: 1 row per digital activity type per timestamp. Duplicates will be deleted
 | duration | integer | in seconds & nullable |
 | timestamp | timestamp | assigned by memair if null |
 | ended_at | timestamp | assigned by memair based on duration |
+| meta | json | nullable |
 | source | string | nullable |
 | notes | string | nullable |
 | updated_at | timestamp | assigned by memair |
@@ -64,7 +65,7 @@ Grain: 1 row per digital activity type per timestamp. Duplicates will be deleted
 See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
 
 ~~~ graphql
-{
+query {
   DigitalActivities(first: 50, order: desc, order_by: timestamp, type: all) {
     timestamp
     digital_activity_type {

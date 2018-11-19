@@ -1,6 +1,6 @@
 ---
 title: Locations
-position: 5.0
+position: 25.0
 type: gamma
 description: Models user geospatially
 right_code: |
@@ -74,7 +74,7 @@ Grain: 1 row per location type per timestamp. Duplicates will be deleted leaving
 See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
 
 ~~~ graphql
-{
+query {
   Locations(first: 50, order: desc, order_by: timestamp, within: "42,42,100") {
     lat
     lon

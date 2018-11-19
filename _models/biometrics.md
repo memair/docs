@@ -1,6 +1,6 @@
 ---
 title: Biometrics
-position: 1.0
+position: 21.0
 type: gamma
 right_code: |
   ~~~ json
@@ -57,7 +57,7 @@ Grain: 1 row per biometric type per timestamp. Duplicates will be deleted leavin
 See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
 
 ~~~ graphql
-{
+query {
   Biometrics(first: 1, order: desc, order_by: timestamp, type: weight) {
     timestamp
     value

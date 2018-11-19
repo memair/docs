@@ -1,6 +1,6 @@
 ---
 title: Journals
-position: 4.0
+position: 24.0
 type: gamma
 right_code: |
   ~~~ json
@@ -56,7 +56,7 @@ Grain: 1 row per journal type per timestamp. Duplicates will be deleted leaving 
 See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
 
 ~~~ graphql
-{
+query {
   Journals(first: 1, order: desc, order_by: timestamp, type: idea) {
     timestamp
     document
