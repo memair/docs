@@ -1,7 +1,6 @@
 ---
 title: Request Access Token
 position: 5
-type: post
 right_code: |
   ~~~ json
   {

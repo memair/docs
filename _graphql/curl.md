@@ -1,7 +1,6 @@
 ---
 title: Curl Example
 position: 3.0
-type: post
 description: Example curl queries for Memair
 right_code: |
   ~~~ json

@@ -5,13 +5,13 @@ description: Example pythonn queries for Memair
 right_code: |
   ~~~ json
   {
-    'data': {
-      'Biometrics': [{
-        'timestamp': '2018-09-16T23:20:58Z',
-        'value': 100.0,
-        'biometric_type': {
-          'name': 'Body Weight',
-          'unit': 'Kilogram'
+    "data": {
+      "Biometrics": [{
+        "timestamp": "2018-09-16T23:20:58Z",
+        "value": 100.0,
+        "biometric_type": {
+          "name": "Body Weight",
+          "unit": "Kilogram"
         }
       }]
     }
