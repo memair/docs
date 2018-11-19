@@ -54,6 +54,21 @@ Memair uses cursor based pagination where `after` is the last id of the previous
 query {
   Locations(
     first: 5
+    order: desc
+    order_by: timestamp
+  )
+  {
+    id
+    timestamp
+  }
+}
+
+~~~
+{: title="First page" }
+~~~ graphql
+query {
+  Locations(
+    first: 5
     after: 42864606
     order: desc
     order_by: timestamp
@@ -65,4 +80,4 @@ query {
 }
 
 ~~~
-{: title="GraphQL Query" }
+{: title="Subsequent page" }
