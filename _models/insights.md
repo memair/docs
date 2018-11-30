@@ -92,8 +92,8 @@ mutation {
 
 ~~~ bash
 curl \
-  -F query='{Insights(first: 1, order: desc, order_by: timestamp) {timestamp, chart}}' \
-  -F access_token=YOUR_ACCESS_TOKEN \
+  -H "access_token: 0000000000000000000000000000000000000000000000000000000000000000" \
+  -d '{Insights(first: 1, order: desc, order_by: timestamp) {timestamp, chart}}' \
   -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
@@ -101,7 +101,7 @@ curl \
 ~~~ python
 from memair import Memair
 
-user = Memair('YOUR_ACCESS_TOKEN')
+user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
 query = '{Insights(first: 1, order: desc, order_by: timestamp) {timestamp, chart}}'
 response = user.query(query)
 print(response)

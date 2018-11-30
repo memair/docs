@@ -39,7 +39,7 @@ Memiar offers a [Python3 package](https://pypi.org/project/memair/) to simplify 
 ~~~ python
 from memair import Memair
 
-user = Memair('YOUR_ACCESS_TOKEN')
+user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
 query = """
 {
   Biometrics(

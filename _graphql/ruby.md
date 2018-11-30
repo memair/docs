@@ -39,7 +39,7 @@ Memiar offers a [Ruby gem](https://rubygems.org/gems/memair) to simplify GraphQL
 ~~~ ruby
 require 'memair'
 
-user = Memair.new('YOUR_ACCESS_TOKEN')
+user = Memair.new('0000000000000000000000000000000000000000000000000000000000000000')
 query = """
 {
   Biometrics(
