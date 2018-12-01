@@ -90,7 +90,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H "access_token: 0000000000000000000000000000000000000000000000000000000000000000" \
+  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{PhysicalActivities(first: 50, order: desc, order_by: timestamp, type: all) {timestamp, physical_activity_type {name}}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

@@ -98,7 +98,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H "access_token: 0000000000000000000000000000000000000000000000000000000000000000" \
+  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{Locations(first: 50, order: desc, order_by: timestamp) {lat, lon, timestamp}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

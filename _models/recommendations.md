@@ -106,8 +106,8 @@ mutation {
 
 ~~~ bash
 curl \
-  -H "access_token: 0000000000000000000000000000000000000000000000000000000000000000" \
-  -d '{Recommendations(first: 1 expired: false actioned: false type: video order: desc order_by: priority){type url timestamp expires_at is_expired actioned_at is_actioned}' \
+  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -d '{Recommendations(first: 1 expired: false actioned: false type: video order: desc order_by: priority){type url timestamp expires_at is_expired actioned_at is_actioned}}' \
   -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
@@ -116,7 +116,7 @@ curl \
 from memair import Memair
 
 user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{Recommendations(first: 1 expired: false actioned: false type: video order: desc order_by: priority){type url timestamp expires_at is_expired actioned_at is_actioned}"
+query = '{Recommendations(first: 1 expired: false actioned: false type: video order: desc order_by: priority){type url timestamp expires_at is_expired actioned_at is_actioned} }'
 response = user.query(query)
 print(response)
 ~~~

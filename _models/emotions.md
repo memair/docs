@@ -84,7 +84,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H "access_token: 0000000000000000000000000000000000000000000000000000000000000000" \
+  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}' \
   -X POST {{ site.app_url }}graphql
 ~~~
