@@ -47,7 +47,7 @@ right_code: |
   {: title="Error" }
 ---
 
-Memair uses cursor based pagination where `after` is the last id of the previous page.
+Memair uses cursor based pagination where `after` is the last id of the previous page. `-1` is an ignored place holder value which is useful in loops as an initial value for after.
 
 
 ~~~ graphql
