@@ -8,16 +8,34 @@ right_code: |
     "data": {
       "Insights": [
         {
-          "timestamp": "2018-05-08T00:00:00Z",
-          "chart": [
-            {"x": "2018-05-01", "y": 4129, "label": "steps"},
-            {"x": "2018-05-02", "y": 7621, "label": "steps"},
-            {"x": "2018-05-03", "y": 1723, "label": "steps"},
-            {"x": "2018-05-04", "y": 2372, "label": "steps"},
-            {"x": "2018-05-05", "y": 3342, "label": "steps"},
-            {"x": "2018-05-06", "y": 7983, "label": "steps", "detail": "Weekly Peak"},
-            {"x": "2018-05-07", "y": 3130, "label": "steps"}
-          ]
+          "timestamp": "2018-12-14T20:55:14Z",
+          "chart": {
+            "type": "line",
+            "title": "Time spent",
+            "series": [
+              {
+                "data": [
+                  1340,
+                  1440,
+                  1200,
+                  1440,
+                  1400,
+                  1380,
+                  1440
+                ],
+                "label": "Steps"
+              }
+            ],
+            "category_axis": [
+              "Saturday",
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ]
+          }
         }
       ]
     }
@@ -72,21 +90,24 @@ query {
 ~~~ graphql
 mutation {
   CreateInsight(
-    chart: [
-      {x: "2018-05-01", y: 4129, label: "steps"},
-      {x: "2018-05-02", y: 7621, label: "steps"},
-      {x: "2018-05-03", y: 1723, label: "steps"},
-      {x: "2018-05-04", y: 2372, label: "steps"},
-      {x: "2018-05-05", y: 3342, label: "steps"},
-      {x: "2018-05-06", y: 7983, label: "steps", detail: "Weekly Peak"},
-      {x: "2018-05-07", y: 3130, label: "steps"}
-    ]
-  ) {
+    source: "Daily insights"
+    chart: {
+      title: "Daily Steps"
+      type: line
+      category_axis: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+      series: [
+        {
+          label: "Steps"
+          data: [4129, 7621, 1723, 2372, 3342, 7983, 3130]
+        }
+      ]
+    }
+  )
+  {
     timestamp
     chart
   }
 }
-
 ~~~
 {: title="GraphQL Mutation" }
 
