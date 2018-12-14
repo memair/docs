@@ -45,7 +45,7 @@ query {
 }
 
 ~~~
-{: title="GraphQL Mutation" }
+{: title="GraphQL" }
 
 ~~~ bash
 curl \

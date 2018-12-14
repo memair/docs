@@ -31,7 +31,7 @@ right_code: |
 
 Revoked tokens will no longer work. It is good practice to revoke tokens when they are no longer needed or if they are exposed. Revoking an Access Token can be access though the GraphQL API (see [below](#graphqlabout) for more details on GraphQL).
 
-Note: You can not revoke Otto's token
+Note: You can not revoke [Otto's access token](#authenticationotto)
 
 ~~~ graphql
 mutation {
@@ -41,7 +41,7 @@ mutation {
 }
 
 ~~~
-{: title="GraphQL Mutation" }
+{: title="GraphQL" }
 
 ~~~ bash
 curl \
