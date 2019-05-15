@@ -1,7 +1,7 @@
 ---
 title: Python Example
 position: 4.0
-description: Example pythonn queries for Memair
+description: Example Python queries for Memair
 right_code: |
   ~~~ json
   {
