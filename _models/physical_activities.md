@@ -66,7 +66,12 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  PhysicalActivities(first: 50, order: desc, order_by: timestamp, type: all) {
+  PhysicalActivities(
+    first: 50
+    order: desc
+    order_by: timestamp
+    type: all
+  ) {
     timestamp
     physical_activity_type {
       name
@@ -78,11 +83,16 @@ query {
 
 ~~~ graphql
 mutation {
-  CreatePhysicalActivity(type: acroyoga) {
-    timestamp
-    physical_activity_type {
-      name
-    }
+  Create(
+    physical_activities: [
+      {
+        type: acroyoga
+      }
+    ]
+  )
+  {
+    id
+    records_total
   }
 }
 ~~~

@@ -66,7 +66,12 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  DigitalActivities(first: 50, order: desc, order_by: timestamp, type: all) {
+  DigitalActivities(
+    first: 50
+    order: desc
+    order_by: timestamp
+    type: all
+  ) {
     timestamp
     digital_activity_type {
       name
@@ -78,11 +83,19 @@ query {
 
 ~~~ graphql
 mutation {
-  CreateDigitalActivity(type: opened_app, meta: {app_name: "cat calendar"}) {
-    timestamp
-    digital_activity_type {
-      name
-    }
+  Create(
+    digital_activities: [
+      {
+        type: opened_app
+        meta: {
+          app_name: "cat calendar"
+        }
+      }
+    ]
+  )
+  {
+    id
+    records_total
   }
 }
 ~~~

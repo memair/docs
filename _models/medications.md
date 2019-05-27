@@ -1,19 +1,12 @@
 ---
-title: Emotions
-position: 23.0
-type: gamma
+title: Medications
+position: 25.5
+type: beta
 right_code: |
   ~~~ json
   {
     "data": {
-      "Emotions": [
-        {
-          "timestamp": "2018-01-01T00:00:00Z",
-          "intensity": 80,
-          "emotion_type": {
-            "name": "Happy"
-          }
-        }
+      "Medications": [
       ]
     }
   }
@@ -27,7 +20,7 @@ right_code: |
       {
         "message": "Please limit requests to 10000 records",
         "locations": [{"line": 3, "column": 3}],
-        "path": ["Emotions"]
+        "path": ["Medications"]
       }
     ]
   }
@@ -35,17 +28,18 @@ right_code: |
   {: title="Error" }
 ---
 
-This model is used to store user data for defined emotion types like blood pressure, happy, or body temperature. A full list of emotion types can be accessed using the `EmotionTypes` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/emotion_types.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/emotion_types.yml) or [contact us](https://blog.memair.com/community/contact) to add emotion types.
+This model is used to store user medication usage data. A full list of medication forms can be accessed using the `MedicationForms` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/medication_forms.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/medication_forms.yml) or [contact us](https://blog.memair.com/community/contact) to add new medication forms.
 
 #### Model
 
-Grain: 1 row per emotion type per timestamp. Duplicates will be deleted leaving the latest version.
+Grain: 1 row per medication usage. Duplicates will be deleted leaving the latest version.
 
 | Name | Type | Notes |
 |-------|--------|---------|
 | id | integer | assigned by memair |
-| emotion_type | emotion type | required |
-| intensity | integer | required |
+| medication_form | medication form | required |
+| dose | float | required |
+| medication_name | string | required |
 | timestamp | timestamp | assigned by memair if null |
 | source | string | nullable |
 | notes | string | nullable |
@@ -57,17 +51,15 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  Emotions(
+  Medications(
     first: 1
     order: desc
     order_by: timestamp
-    type: happy
+    form: oral_tablet
   ) {
     timestamp
-    intensity
-    emotion_type {
-      name
-    }
+    dose
+    medication_name
   }
 }
 ~~~
@@ -76,10 +68,11 @@ query {
 ~~~ graphql
 mutation {
   Create(
-    emotions: [
+    medications: [
       {
-        intensity: 8
-        type: happy
+        dose: 0.2
+        form: oral_tablet
+        medication_name: "ibuprofen"
       }
     ]
   )
@@ -94,7 +87,7 @@ mutation {
 ~~~ bash
 curl \
   -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}' \
+  -d '{Medications(first: 1 order: desc order_by: timestamp form: oral_tablet) {timestamp dose medication_name}}' \
   -X POST {{ site.app_url }}graphql
 ~~~
 {: title="Curl" }
@@ -103,7 +96,7 @@ curl \
 from memair import Memair
 
 user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}"
+query = "{Medications(first: 1 order: desc order_by: timestamp form: oral_tablet) {timestamp dose medication_name}}"
 response = user.query(query)
 print(response)
 ~~~

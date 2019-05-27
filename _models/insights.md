@@ -79,7 +79,11 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  Insights(first: 1, order: desc, order_by: timestamp) {
+  Insights(
+    first: 1
+    order: desc
+    order_by: timestamp
+  ) {
     timestamp
     chart
   }

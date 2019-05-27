@@ -58,7 +58,12 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  Biometrics(first: 1, order: desc, order_by: timestamp, type: weight) {
+  Biometrics(
+    first: 1
+    order: desc
+    order_by: timestamp
+    type: weight
+  ) {
     timestamp
     value
     biometric_type {
@@ -72,16 +77,19 @@ query {
 
 ~~~ graphql
 mutation {
-  CreateBiometric(value: 80, type: weight) {
-    timestamp
-    value
-    biometric_type {
-      name
-      unit
-    }
+  Create(
+    biometrics: [
+      {
+        value: 80
+        type: weight
+      }
+    ]
+  )
+  {
+    id
+    records_total
   }
 }
-
 ~~~
 {: title="GraphQL Mutation" }
 

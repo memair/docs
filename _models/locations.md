@@ -75,22 +75,33 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  Locations(first: 50, order: desc, order_by: timestamp, within: "42,42,100") {
+  Locations(
+    first: 50
+    order: desc
+    order_by: timestamp
+    within: "42,42,100"
+  ) {
     lat
     lon
     timestamp
   }
 }
-
 ~~~
 {: title="GraphQL Query" }
 
 ~~~ graphql
 mutation {
-  CreateLocation(lat: 42, lon: 42) {
-    lat
-    lon
-    timestamp
+  Create(
+    locations: [
+      {
+        lat: 42
+        lon: 42
+      }
+    ]
+  )
+  {
+    id
+    records_total
   }
 }
 ~~~

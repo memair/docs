@@ -85,22 +85,21 @@ query {
 
 ~~~ graphql
 mutation {
-  CreateRecommendation(
-    priority: 90
-    expires_at: tomorrow
-    type: video
-    url: "https://youtu.be/LQCoHLQkFxw"
-  ) {
-    type
-    url
-    timestamp
-    expires_at
-    is_expired
-    actioned_at
-    is_actioned
+  Create(
+    recommendations: [
+      {
+        priority: 90
+        expires_at: tomorrow
+        type: video
+        url: "https://youtu.be/LQCoHLQkFxw"
+      }
+    ]
+  )
+  {
+    id
+    records_total
   }
 }
-
 ~~~
 {: title="GraphQL Mutation" }
 

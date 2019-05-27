@@ -57,7 +57,12 @@ See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mu
 
 ~~~ graphql
 query {
-  Journals(first: 1, order: desc, order_by: timestamp, type: idea) {
+  Journals(
+    first: 1
+    order: desc
+    order_by: timestamp
+    type: idea
+  ) {
     timestamp
     document
     journal_type {
@@ -70,15 +75,19 @@ query {
 
 ~~~ graphql
 mutation {
-  CreateJournal(document: "Cat barbershop, not sure if it's for cats of just has cats running around", type: idea) {
-    timestamp
-    document
-    journal_type {
-      name
-    }
+  Create(
+    journals: [
+      {
+        document: "Cat barbershop, not sure if it's for cats of just has cats running around"
+        type: idea
+      }
+    ]
+  )
+  {
+    id
+    records_total
   }
 }
-
 ~~~
 {: title="GraphQL Mutation" }
 
