@@ -12,9 +12,6 @@ Please [contact](http://blog.memair.com/contact) us if you have suggestions for 
   - An apple
   - Meclizine 25mg
   - Ibuprofen 400mg
-* Injection
-  - Flu shot (LAIV)
-  - Morphine 20mg
-* Physical sensations
+* Symptoms
   - Throbbing in right foot
   - Sharp pain in front left brain
