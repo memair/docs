@@ -86,7 +86,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{Medications(first: 1 order: desc order_by: timestamp form: oral_tablet) {timestamp dose medication_name}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

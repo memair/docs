@@ -49,7 +49,7 @@ query {
 
 ~~~ bash
 curl \
-  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{AccessToken{expired revoked location_read scopes}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

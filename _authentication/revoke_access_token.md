@@ -45,7 +45,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d 'mutation{RevokeAccessToken{revoked}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

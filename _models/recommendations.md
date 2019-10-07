@@ -105,7 +105,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{Recommendations(first: 1 expired: false actioned: false type: video order: desc order_by: priority){type url timestamp expires_at is_expired actioned_at is_actioned}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

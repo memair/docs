@@ -37,12 +37,12 @@ right_code: |
 query
 : GraphQL query. See [above](#graphqlgraphiql) for more details
 
-access_token
-: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access_token) for more details
+access-token
+: access token with correct scopes for memories being accessed. See [Request Access Token](#authenticationrequest_access-token) for more details
 
 ~~~ bash
 curl \
-  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{Biometrics(first: 1 order: desc order_by: timestamp type: weight) {timestamp value biometric_type {name unit}}}' \
   -X POST {{ site.app_url }}graphql
 ~~~

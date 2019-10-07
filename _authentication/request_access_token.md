@@ -4,7 +4,7 @@ position: 5
 right_code: |
   ~~~ json
   {
-    "access_token": "de6780bc506a0446309bd9362820ba8aed28aa506c71eedbe1c5c4f9dd350e54",
+    "access-token": "de6780bc506a0446309bd9362820ba8aed28aa506c71eedbe1c5c4f9dd350e54",
     "token_type": "bearer",
     "created_at": 1457567765
   }

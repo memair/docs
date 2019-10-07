@@ -93,7 +93,7 @@ mutation {
 
 ~~~ bash
 curl \
-  -H 'access_token: 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
   -d '{Journals(first: 1 order: desc order_by: timestamp type: idea) {timestamp document journal_type {name}}}' \
   -X POST {{ site.app_url }}graphql
 ~~~
