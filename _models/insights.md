@@ -1,39 +1,23 @@
 ---
 title: Insights
-position: 10.0
-type: alpha
+position: 30.0
 right_code: |
   ~~~ json
   {
     "data": {
       "Insights": [
         {
-          "timestamp": "2018-12-14T20:55:14Z",
+          "id": "9112",
+          "timestamp": "2026-10-27T06:00:00Z",
           "chart": {
+            "title": "Daily steps",
             "type": "line",
-            "title": "Time spent",
+            "category_axis": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
             "series": [
               {
-                "data": [
-                  1340,
-                  1440,
-                  1200,
-                  1440,
-                  1400,
-                  1380,
-                  1440
-                ],
-                "label": "Steps"
+                "label": "Steps",
+                "data": [4129.0, 7621.0, 1723.0, 2372.0, 3342.0, 7983.0, 3130.0]
               }
-            ],
-            "category_axis": [
-              "Saturday",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday"
             ]
           }
         }
@@ -42,93 +26,39 @@ right_code: |
   }
   ~~~
   {: title="Response" }
-
-  ~~~ json
-  {
-    "data": None,
-    "errors": [
-      {
-        "message": "Please limit requests to 10000 records",
-        "locations": [{"line": 3, "column": 3}],
-        "path": ["Insights"]
-      }
-    ]
-  }
-  ~~~
-  {: title="Error" }
 ---
 
-This model is used to surface insights to the user. Insights are represented as charts.
+An insight is a chart that an app made from the user's data. Memair shows insights on the user's Insights page.
 
-#### Model
+Insights are older than the eight record kinds and work differently. `Insights` returns a plain list: `first` (10 by default) sets its length, and `after` takes the `id` of the last insight on the previous page. `CreateInsight` adds one, and there is no update or delete. Scopes: `insight_read` and `insight_write`.
 
-Grain: each row contains a single insight.
-
-| Name | Type | Notes |
-|-------|--------|---------|
-| id | integer | assigned by memair |
-| chart | json | non nullable |
-| timestamp | timestamp | assigned by memair if null |
-| source | string | nullable |
-| notes | string | nullable |
-| updated_at | timestamp | assigned by memair |
-
-#### Example interactions
-
-See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
+The chart is a line chart. `categoryAxis` labels the x axis, and each `series` has a `label` and one `data` value per category. `title`, `min` and `max` are optional. The stored chart is returned with snake_case keys, as `category_axis`.
 
 ~~~ graphql
 query {
-  Insights(
-    first: 1
-    order: desc
-    order_by: timestamp
-  ) {
+  Insights(first: 1) {
+    id
     timestamp
     chart
   }
 }
 ~~~
-{: title="GraphQL Query" }
+{: title="List" }
 
 ~~~ graphql
 mutation {
   CreateInsight(
-    source: "Daily insights"
+    source: "Example app"
     chart: {
-      title: "Daily Steps"
+      title: "Daily steps"
       type: line
-      category_axis: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-      series: [
-        {
-          label: "Steps"
-          data: [4129, 7621, 1723, 2372, 3342, 7983, 3130]
-        }
-      ]
+      categoryAxis: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      series: [{label: "Steps", data: [4129, 7621, 1723, 2372, 3342, 7983, 3130]}]
     }
-  )
-  {
+  ) {
+    id
     timestamp
-    chart
   }
 }
 ~~~
-{: title="GraphQL Mutation" }
-
-~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{Insights(first: 1, order: desc, order_by: timestamp) {timestamp, chart}}' \
-  -X POST {{ site.app_url }}graphql
-~~~
-{: title="Curl" }
-
-~~~ python
-from memair import Memair
-
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = '{Insights(first: 1, order: desc, order_by: timestamp) {timestamp, chart}}'
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+{: title="Create" }

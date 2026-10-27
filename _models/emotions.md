@@ -1,110 +1,63 @@
 ---
 title: Emotions
 position: 23.0
-type: gamma
 right_code: |
   ~~~ json
   {
     "data": {
-      "Emotions": [
-        {
-          "timestamp": "2018-01-01T00:00:00Z",
-          "intensity": 80,
-          "emotion_type": {
-            "name": "Happy"
+      "emotions": {
+        "nodes": [
+          {
+            "timestamp": "2026-10-27T08:15:00Z",
+            "intensity": 7.0,
+            "emotionType": {
+              "name": "Happy",
+              "emoji": "😀"
+            }
           }
-        }
-      ]
+        ]
+      }
     }
   }
   ~~~
   {: title="Response" }
-
-  ~~~ json
-  {
-    "data": None,
-    "errors": [
-      {
-        "message": "Please limit requests to 10000 records",
-        "locations": [{"line": 3, "column": 3}],
-        "path": ["Emotions"]
-      }
-    ]
-  }
-  ~~~
-  {: title="Error" }
 ---
 
-This model is used to store user data for defined emotion types like blood pressure, happy, or body temperature. A full list of emotion types can be accessed using the `EmotionTypes` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/emotion_types.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/emotion_types.yml) or [contact us](https://blog.memair.com/community/contact) to add emotion types.
+An emotion is a feeling of a defined type with an `intensity` from 0 to 10. `EmotionTypes` lists the types with their emoji, and [emotion_types.yml](https://github.com/memair/data-types/blob/master/emotion_types.yml) defines them.
 
-#### Model
-
-Grain: 1 row per emotion type per timestamp. Duplicates will be deleted leaving the latest version.
-
-| Name | Type | Notes |
-|-------|--------|---------|
-| id | integer | assigned by memair |
-| emotion_type | emotion type | required |
-| intensity | integer | required |
-| timestamp | timestamp | assigned by memair if null |
-| source | string | nullable |
-| notes | string | nullable |
-| updated_at | timestamp | assigned by memair |
-
-#### Example interactions
-
-See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
+Scopes: `emotion_read` and `emotion_write`. Besides the [list arguments](#modelspagination) every record has, `emotions` can sort by `INTENSITY`.
 
 ~~~ graphql
 query {
-  Emotions(
-    first: 1
-    order: desc
-    order_by: timestamp
-    type: happy
-  ) {
-    timestamp
-    intensity
-    emotion_type {
-      name
+  emotions(first: 5) {
+    nodes {
+      timestamp
+      intensity
+      emotionType {
+        name
+        emoji
+      }
     }
   }
 }
 ~~~
-{: title="GraphQL Query" }
+{: title="List" }
 
 ~~~ graphql
 mutation {
-  Create(
-    emotions: [
-      {
-        intensity: 8
-        type: happy
-      }
-    ]
-  )
-  {
-    id
-    records_total
+  createEmotion(input: {
+    type: happy
+    intensity: 7
+    clientUuid: "4c007994-6335-40fb-a14c-0c12f006daf7"
+  }) {
+    emotion {
+      id
+    }
+    errors {
+      field
+      message
+    }
   }
 }
 ~~~
-{: title="GraphQL Mutation" }
-
-~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}' \
-  -X POST {{ site.app_url }}graphql
-~~~
-{: title="Curl" }
-
-~~~ python
-from memair import Memair
-
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{Emotions(first: 1 order: desc order_by: timestamp type: happy) {timestamp intensity emotion_type {name}}}"
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+{: title="Create" }

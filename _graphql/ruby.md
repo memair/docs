@@ -1,22 +1,25 @@
 ---
 title: Ruby Example
 position: 5.0
-description: Example Ruby queries for Memair
+description: A request with Ruby's standard library
 right_code: |
   ~~~ json
   {
     "data": {
-      "Biometrics": [{
-        "timestamp": "2018-09-16T23:20:58Z",
-        "value": 100.0,
-        "biometric_type": {
-          "name": "Body Weight",
-          "unit": "Kilogram"
-        }
-      }]
+      "biometrics": {
+        "nodes": [
+          {
+            "timestamp": "2026-10-26T12:30:00Z",
+            "value": 80.2,
+            "biometricType": {
+              "name": "Body weight",
+              "unitSymbol": "kg"
+            }
+          }
+        ]
+      }
     }
   }
-
   ~~~
   {: title="Response" }
 
@@ -24,40 +27,61 @@ right_code: |
   {
     "errors": [
       {
-        "message": "Field 'foobar' doesn't exist on type 'Biometric'",
-        "locations": [{"line":1,"column":32}]
+        "message": "Field 'unit_symbol' doesn't exist on type 'BiometricType' (Did you mean `unitSymbol`?)",
+        "locations": [{"line": 8, "column": 9}],
+        "path": [
+          "query LatestWeight",
+          "biometrics",
+          "nodes",
+          "biometricType",
+          "unit_symbol"
+        ],
+        "extensions": {
+          "code": "undefinedField",
+          "typeName": "BiometricType",
+          "fieldName": "unit_symbol"
+        }
       }
-    ],
-    "data": {}
+    ]
   }
   ~~~
   {: title="Error" }
 ---
 
-Memiar offers a [Ruby gem](https://rubygems.org/gems/memair) to simplify GraphQL queries and mutations.
+This script reads the latest weight with [Otto's token](#authenticationotto). It needs only Ruby's standard library.
 
 ~~~ ruby
-require 'memair'
+require "json"
+require "net/http"
 
-user = Memair.new('0000000000000000000000000000000000000000000000000000000000000000')
-query = """
-{
-  Biometrics(
-    first: 1
-    order: desc
-    order_by: timestamp
-    type: weight
-  )
-  {
-    timestamp
-    value
-    biometric_type {
-      name
-      unit
+access_token = "0000000000000000000000000000000000000000000000000000000000000000"
+
+query = <<~GRAPHQL
+  query LatestWeight {
+    biometrics(first: 1, type: weight) {
+      nodes {
+        timestamp
+        value
+        biometricType {
+          name
+          unitSymbol
+        }
+      }
     }
   }
-}"""
-response = user.query(query)
-puts response
+GRAPHQL
+
+response = Net::HTTP.post(
+  URI("https://memair.com/graphql"),
+  { query: query }.to_json,
+  "Authorization" => "Bearer #{access_token}",
+  "Content-Type" => "application/json"
+)
+response.value
+puts JSON.parse(response.body)
 ~~~
 {: title="Ruby" }
+
+`response.value` raises on token and rate-limit failures, which come back as HTTP errors. GraphQL errors come back with HTTP `200`, so check the result for `errors` too ([Errors](#graphqlerrors)).
+
+The Error tab shows the response when a field name is misspelled, here `unit_symbol` for `unitSymbol`.

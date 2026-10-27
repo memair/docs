@@ -1,110 +1,61 @@
 ---
 title: Journals
 position: 24.0
-type: gamma
 right_code: |
   ~~~ json
   {
     "data": {
-      "Journals": [
-        {
-          "timestamp": "2018-01-01T00:00:00Z",
-          "document": 80,
-          "journal_type": {
-            "name": "Idea"
+      "journals": {
+        "nodes": [
+          {
+            "timestamp": "2026-10-20T21:00:00Z",
+            "document": "Grow catnip in the garden to attract more cats",
+            "journalType": {
+              "name": "Idea"
+            }
           }
-        }
-      ]
+        ]
+      }
     }
   }
   ~~~
   {: title="Response" }
-
-  ~~~ json
-  {
-    "data": None,
-    "errors": [
-      {
-        "message": "Please limit requests to 10000 records",
-        "locations": [{"line": 3, "column": 3}],
-        "path": ["Journals"]
-      }
-    ]
-  }
-  ~~~
-  {: title="Error" }
 ---
 
-This model is used to store user data for defined journal types like concept, idea, or thought. A full list of journal types can be accessed using the `JournalTypes` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/journal_types.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/journal_types.yml) or [contact us](https://blog.memair.com/community/contact) to add journal types.
+A journal entry is a piece of text, `document`, of a defined type such as an idea, a dream or a gratitude. `JournalTypes` lists the types, and [journal_types.yml](https://github.com/memair/data-types/blob/master/journal_types.yml) defines them.
 
-#### Model
-
-Grain: 1 row per journal type per timestamp. Duplicates will be deleted leaving the latest version.
-
-| Name | Type | Notes |
-|-------|--------|---------|
-| id | integer | assigned by memair |
-| journal_type | journal type | required |
-| document | integer | required |
-| timestamp | timestamp | assigned by memair if null |
-| source | string | nullable |
-| notes | string | nullable |
-| updated_at | timestamp | assigned by memair |
-
-#### Example interactions
-
-See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
+Scopes: `journal_read` and `journal_write`.
 
 ~~~ graphql
 query {
-  Journals(
-    first: 1
-    order: desc
-    order_by: timestamp
-    type: idea
-  ) {
-    timestamp
-    document
-    journal_type {
-      name
+  journals(first: 5, type: idea) {
+    nodes {
+      timestamp
+      document
+      journalType {
+        name
+      }
     }
   }
 }
 ~~~
-{: title="GraphQL Query" }
+{: title="List" }
 
 ~~~ graphql
 mutation {
-  Create(
-    journals: [
-      {
-        document: "Cat barbershop, not sure if it's for cats of just has cats running around"
-        type: idea
-      }
-    ]
-  )
-  {
-    id
-    records_total
+  createJournal(input: {
+    type: idea
+    document: "Grow catnip in the garden to attract more cats"
+    clientUuid: "e1feb553-0619-495e-af31-d87fb12e07d3"
+  }) {
+    journal {
+      id
+    }
+    errors {
+      field
+      message
+    }
   }
 }
 ~~~
-{: title="GraphQL Mutation" }
-
-~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{Journals(first: 1 order: desc order_by: timestamp type: idea) {timestamp document journal_type {name}}}' \
-  -X POST {{ site.app_url }}graphql
-~~~
-{: title="Curl" }
-
-~~~ python
-from memair import Memair
-
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{Journals(first: 1 order: desc order_by: timestamp type: idea) {timestamp document journal_type {name}}}"
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+{: title="Create" }
