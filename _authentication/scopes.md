@@ -18,6 +18,7 @@ Each access token carries scopes, and each part of the API checks for one. A req
 | `recommendation_action` | marking a recommendation actioned or ignored with `ActionRecommendation` |
 | `recommendation_delete` | the deprecated `DeleteRecommendation` only; `deleteRecommendation` needs `recommendation_write` |
 | `insight_read`, `insight_write` | reading and creating insights |
+| `preset_read` | listing the user's presets with `presets` and running one with `runPreset`; a preset runs with the token's other scopes, so it writes only what the token may write |
 | `user_details` | the `UserDetails` query: the user's email, time zone and record counts |
 | `public` | granted to every token; nothing checks it |
 
