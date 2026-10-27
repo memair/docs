@@ -1,9 +1,18 @@
 <script>
-	var re = new RegExp("0000000000000000000000000000000000000000000000000000000000000000", "g");
-	function replaceToken() {
-		 var token = document.getElementsByName('token')[0].value.replace(/<(?:.|\n)*?>/gm, '') + " ";
-		 document.body.innerHTML = document.body.innerHTML.replace(re, token);
-		 re = new RegExp(token, "g");
+	var currentToken = "0000000000000000000000000000000000000000000000000000000000000000";
+	function replaceToken(value) {
+		// Access tokens are hex or URL-safe base64, so anything else is dropped before it reaches the page.
+		var token = value.replace(/[^A-Za-z0-9_-]/g, '');
+		if (token === '' || token === currentToken) return;
+		// Editing text nodes, not innerHTML, keeps the code tabs' click handlers.
+		var walker = document.createTreeWalker(document.querySelector('.main'), NodeFilter.SHOW_TEXT);
+		while (walker.nextNode()) {
+			var node = walker.currentNode;
+			if (node.nodeValue.indexOf(currentToken) !== -1) {
+				node.nodeValue = node.nodeValue.split(currentToken).join(token);
+			}
+		}
+		currentToken = token;
 	}
 </script>
 <div id="sidebar" class="sidebar">
