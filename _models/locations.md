@@ -1,126 +1,81 @@
 ---
 title: Locations
 position: 25.0
-type: gamma
-description: Models user geospatially
 right_code: |
   ~~~ json
   {
     "data": {
-      "Locations": [
-        {
-          "lat": 42,
-          "lon": 42,
-          "timestamp": "2018-05-26T11:52:23Z"
-        },
-        ...
-        {
-          "lat": 42,
-          "lon": 42,
-          "timestamp": "2018-05-26T11:52:21Z"
-        }
-      ]
+      "locations": {
+        "nodes": [
+          {
+            "timestamp": "2026-10-27T12:01:00Z",
+            "lat": 45.4215,
+            "lon": -75.6972,
+            "pointAccuracy": 12.0,
+            "timezone": "America/Toronto"
+          }
+        ]
+      }
     }
   }
   ~~~
   {: title="Response" }
-
-  ~~~ json
-  {
-    "data": None,
-    "errors": [
-      {
-        "message": "Please limit requests to 10000 records",
-        "locations": [{"line": 3, "column": 3}],
-        "path": ["Locations"]
-      }
-    ]
-  }
-  ~~~
-  {: title="Error" }
 ---
 
-lat
-: Latitude
+A location is a point where the user was. Locations have no type.
 
-lon
-: Longitude
+lat, lon
+: latitude from -90 to 90 and longitude from -180 to 180, in degrees
 
-timestamp
-: Timestamp of location
-
-altitude
-: Altitude (meters)
-
-point_accuracy
-: Point Accuracy (meters)
-
-altitude_accuracy
-: Altitude Accuracy (meters)
+pointAccuracy, altitude, altitudeAccuracy
+: in meters
 
 heading
-: Heading (degrees from north)
+: degrees clockwise from north, at least 0 and less than 360. Send `null` when the device reports no heading; a negative value fails the record.
 
 speed
-: Speed (meters per second)
+: in meters per second
 
-source
-: Source of location
+timezone
+: the time zone at the point, which Memair works out
 
-Grain: 1 row per location type per timestamp. Duplicates will be deleted leaving the latest version.
+Scopes: `location_read` and `location_write`. Besides the [list arguments](#modelspagination) every record has, `locations` takes `within: "latitude,longitude,meters"`, which keeps the points within that distance of a place.
 
-#### Example interactions
-
-See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
+A phone that records points while offline should send them in batches through [Bulk Create](#modelscreate_status).
 
 ~~~ graphql
 query {
-  Locations(
-    first: 50
-    order: desc
-    order_by: timestamp
-    within: "42,42,100"
-  ) {
-    lat
-    lon
-    timestamp
+  locations(first: 50, within: "45.4215,-75.6972,500") {
+    nodes {
+      timestamp
+      lat
+      lon
+      pointAccuracy
+      timezone
+    }
   }
 }
 ~~~
-{: title="GraphQL Query" }
+{: title="List" }
 
 ~~~ graphql
 mutation {
-  Create(
-    locations: [
-      {
-        lat: 42
-        lon: 42
-      }
-    ]
-  )
-  {
-    id
-    records_total
+  createLocation(input: {
+    lat: 45.4215
+    lon: -75.6972
+    pointAccuracy: 12
+    timestamp: "2026-10-27T12:01:00Z"
+    clientUuid: "dca469ef-3996-490b-a45a-ab81e0538998"
+  }) {
+    location {
+      id
+      timezone
+    }
+    errors {
+      field
+      message
+    }
   }
 }
 ~~~
-{: title="GraphQL Mutation" }
-
-~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{Locations(first: 50, order: desc, order_by: timestamp) {lat, lon, timestamp}}' \
-  -X POST {{ site.app_url }}graphql
-~~~
-{: title="Curl" }
-
-~~~ python
-from memair import Memair
-
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{Locations(first: 50, order: desc, order_by: timestamp) {lat, lon, timestamp}}"
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+{: title="Create" }

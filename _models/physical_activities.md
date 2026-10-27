@@ -1,117 +1,70 @@
 ---
 title: Physical Activities
 position: 27.0
-type: gamma
-description: Models defined physical activities
 right_code: |
   ~~~ json
   {
     "data": {
-      "PhysicalActivities": [
-        {
-          "timestamp": "2018-05-19T03:55:10Z",
-          "physical_activity_type": {
-            "name": "Skating"
+      "physicalActivities": {
+        "nodes": [
+          {
+            "timestamp": "2026-10-26T17:30:00Z",
+            "duration": 1800.0,
+            "endedAt": "2026-10-26T18:00:00Z",
+            "meta": {"distance_m": 5000},
+            "physicalActivityType": {
+              "name": "Running"
+            }
           }
-        }
-        ...
-        {
-          "timestamp": "2018-05-123T03:24:55Z",
-          "physical_activity_type": {
-            "name": "Polo"
-          }
-        }
-      ]
+        ]
+      }
     }
   }
   ~~~
   {: title="Response" }
-
-  ~~~ json
-  {
-    "data": None,
-    "errors": [
-      {
-        "message": "Please limit requests to 10000 records",
-        "locations": [{"line": 3, "column": 3}],
-        "path": ["PhysicalActivities"]
-      }
-    ]
-  }
-  ~~~
-  {: title="Error" }
 ---
 
-This model is used to store user data for defined physical activity types like blood pressure, weight, body temperature. A full list of physical activity types can be accessed using the `PhysicalActivityTypes` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/physical_activity_types.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/physical_activity_types.yml) or [contact us](https://blog.memair.com/community/contact) to add physical activity types.
+A physical activity is something the user did with their body over a period, from running and yoga to deep sleep. `PhysicalActivityTypes` lists the types, and [physical_activity_types.yml](https://github.com/memair/data-types/blob/master/physical_activity_types.yml) defines them.
 
-#### Model
+`duration` is in seconds, and `endedAt` is `timestamp` plus `duration`. `meta` holds any details. Memair's Apple Health import records a workout's distance and energy there, as `distance_m` and `active_energy_kcal`.
 
-Grain: 1 row per physical activity type per timestamp. Duplicates will be deleted leaving the latest version.
-
-| Name | Type | Notes |
-|-------|--------|---------|
-| id | integer | assigned by memair |
-| physical_activity_type | physical activity type | required |
-| duration | integer | in seconds & nullable |
-| timestamp | timestamp | assigned by memair if null |
-| ended_at | timestamp | assigned by memair based on duration |
-| meta | json | nullable |
-| source | string | nullable |
-| notes | string | nullable |
-| updated_at | timestamp | assigned by memair |
-
-#### Example interactions
-
-See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
+Scopes: `physical_activity_read` and `physical_activity_write`.
 
 ~~~ graphql
 query {
-  PhysicalActivities(
-    first: 50
-    order: desc
-    order_by: timestamp
-    type: all
-  ) {
-    timestamp
-    physical_activity_type {
-      name
+  physicalActivities(first: 5, type: running) {
+    nodes {
+      timestamp
+      duration
+      endedAt
+      meta
+      physicalActivityType {
+        name
+      }
     }
   }
 }
 ~~~
-{: title="GraphQL Query" }
+{: title="List" }
 
 ~~~ graphql
 mutation {
-  Create(
-    physical_activities: [
-      {
-        type: acroyoga
-      }
-    ]
-  )
-  {
-    id
-    records_total
+  createPhysicalActivity(input: {
+    type: running
+    timestamp: "2026-10-26T17:30:00Z"
+    duration: 1800
+    meta: {distance_m: 5000}
+    clientUuid: "ceb8f9de-cbc4-432b-b490-e382b5a70bac"
+  }) {
+    physicalActivity {
+      id
+      endedAt
+    }
+    errors {
+      field
+      message
+    }
   }
 }
 ~~~
-{: title="GraphQL Mutation" }
-
-~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{PhysicalActivities(first: 50, order: desc, order_by: timestamp, type: all) {timestamp, physical_activity_type {name}}}' \
-  -X POST {{ site.app_url }}graphql
-~~~
-{: title="Curl" }
-
-~~~ python
-from memair import Memair
-
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{PhysicalActivities(first: 50, order: desc, order_by: timestamp, type: all) {timestamp, physical_activity_type {name}}}"
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+{: title="Create" }

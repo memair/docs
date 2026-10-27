@@ -1,112 +1,69 @@
 ---
 title: Biometrics
 position: 21.0
-type: gamma
 right_code: |
   ~~~ json
   {
     "data": {
-      "Biometrics": [
-        {
-          "timestamp": "2018-01-01T00:00:00Z",
-          "value": 80,
-          "biometric_type": {
-            "name": "Body Weight",
-            "unit": "Kilogram"
+      "biometrics": {
+        "nodes": [
+          {
+            "id": "34117181",
+            "timestamp": "2026-10-27T07:00:00Z",
+            "value": 72.0,
+            "biometricType": {
+              "name": "Heart rate",
+              "unitSymbol": "bpm"
+            }
           }
-        }
-      ]
+        ]
+      }
     }
   }
   ~~~
   {: title="Response" }
-
-  ~~~ json
-  {
-    "data": None,
-    "errors": [
-      {
-        "message": "Please limit requests to 10000 records",
-        "locations": [{"line": 3, "column": 3}],
-        "path": ["Biometrics"]
-      }
-    ]
-  }
-  ~~~
-  {: title="Error" }
 ---
 
-This model is used to store user data for defined biometric types like blood pressure, weight, or body temperature. A full list of biometric types can be accessed using the `BiometricTypes` endpoint or inspecting the [data-types repo](https://github.com/memair/data-types/blob/master/biometric_types.yml). Please create a [pull request](https://github.com/memair/data-types/blob/master/biometric_types.yml) or [contact us](https://blog.memair.com/community/contact) to add biometric types.
+A biometric is one measurement of a defined type, such as weight, blood pressure or heart rate. `value` is a number in the type's unit. `BiometricTypes` lists each type's `unit` and `unitSymbol`, and [biometric_types.yml](https://github.com/memair/data-types/blob/master/biometric_types.yml) defines them.
 
-#### Model
+Types whose slug starts with `daily_`, such as `daily_steps`, are totals for one day, recorded at the start of that day.
 
-Grain: 1 row per biometric type per timestamp. Duplicates will be deleted leaving the latest version.
-
-| Name | Type | Notes |
-|-------|--------|---------|
-| id | integer | assigned by memair |
-| biometric_type | biometric type | required |
-| value | integer | required |
-| timestamp | timestamp | assigned by memair if null |
-| source | string | nullable |
-| notes | string | nullable |
-| updated_at | timestamp | assigned by memair |
-
-#### Example interactions
-
-See the [Documentation Explorer]({{ site.app_url }}graphiql) for full list of mutations and query filters.
+Scopes: `biometric_read` and `biometric_write`. Besides the [list arguments](#modelspagination) every record has, `biometrics` can sort by `VALUE`.
 
 ~~~ graphql
 query {
-  Biometrics(
-    first: 1
-    order: desc
-    order_by: timestamp
-    type: weight
-  ) {
-    timestamp
-    value
-    biometric_type {
-      name
-      unit
+  biometrics(first: 10, type: heart_rate, fromTimestamp: "last 7 days") {
+    nodes {
+      id
+      timestamp
+      value
+      biometricType {
+        name
+        unitSymbol
+      }
     }
   }
 }
 ~~~
-{: title="GraphQL Query" }
+{: title="List" }
 
 ~~~ graphql
 mutation {
-  Create(
-    biometrics: [
-      {
-        value: 80
-        type: weight
-      }
-    ]
-  )
-  {
-    id
-    records_total
+  createBiometric(input: {
+    type: weight
+    value: 80.2
+    timestamp: "2026-10-27T07:00:00Z"
+    clientUuid: "b922d55f-244b-4113-930a-e497bb38fca0"
+  }) {
+    biometric {
+      id
+      value
+    }
+    errors {
+      field
+      message
+    }
   }
 }
 ~~~
-{: title="GraphQL Mutation" }
-
-~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d '{Biometrics(first: 1 order: desc order_by: timestamp type: weight) {timestamp value biometric_type {name unit}}}' \
-  -X POST {{ site.app_url }}graphql
-~~~
-{: title="Curl" }
-
-~~~ python
-from memair import Memair
-
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "{Biometrics(first: 1 order: desc order_by: timestamp type: weight) {timestamp value biometric_type {name unit}}}"
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+{: title="Create" }
