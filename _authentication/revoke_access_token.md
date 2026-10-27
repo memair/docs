@@ -1,37 +1,38 @@
 ---
-title: Revoke Access Token
-position: 7
+title: Revoke an Access Token
+position: 9
 right_code: |
   ~~~ json
   {
     "data": {
-      "RevokeAccessToken": [
-        {
-          "revoked": true
-        }
-      ]
-    }  
+      "RevokeAccessToken": {
+        "revoked": true
+      }
+    }
   }
-
   ~~~
   {: title="Response" }
 
   ~~~ json
   {
+    "errors": [
+      {
+        "message": "Otto's token can not revoked, others may want to play with his data",
+        "locations": [{"line": 2, "column": 3}],
+        "path": ["RevokeAccessToken"]
+      }
+    ],
     "data": {
       "RevokeAccessToken": null
-    }
-    "errors": {
-      "message": "Otto's token can not revoked, others may want to play with his data"
     }
   }
   ~~~
   {: title="Error" }
 ---
 
-Revoked tokens will no longer work. It is good practice to revoke tokens when they are no longer needed or if they are exposed. Revoking an Access Token can be access though the GraphQL API (see [below](#graphqlabout) for more details on GraphQL).
+Revoke a token when the app no longer needs it or when it may have leaked. A revoked token stops working at once.
 
-Note: You can not revoke [Otto's access token](#authenticationotto)
+The `RevokeAccessToken` mutation revokes the token that sends it. [Otto's token](#authenticationotto) cannot be revoked.
 
 ~~~ graphql
 mutation {
@@ -39,24 +40,17 @@ mutation {
     revoked
   }
 }
-
 ~~~
 {: title="GraphQL" }
 
 ~~~ bash
-curl \
-  -H 'access-token: 0000000000000000000000000000000000000000000000000000000000000000' \
-  -d 'mutation{RevokeAccessToken{revoked}}' \
-  -X POST {{ site.app_url }}graphql
+curl https://memair.com/graphql \
+  -H 'Authorization: Bearer 0000000000000000000000000000000000000000000000000000000000000000' \
+  -H 'Content-Type: application/json' \
+  -d '{"query": "mutation { RevokeAccessToken { revoked } }"}'
 ~~~
 {: title="Curl" }
 
-~~~ python
-from memair import Memair
+Memair also has the standard revocation endpoint, `POST {{ site.app_url }}oauth/revoke` ([RFC 7009](https://www.rfc-editor.org/rfc/rfc7009.html)). Send the `token` with the app's `client_id` and `client_secret`.
 
-user = Memair('0000000000000000000000000000000000000000000000000000000000000000')
-query = "mutation{RevokeAccessToken{revoked}}"
-response = user.query(query)
-print(response)
-~~~
-{: title="Python" }
+Users can revoke an app's tokens themselves under Account > [Installed]({{ site.app_url }}oauth/authorized_applications).
