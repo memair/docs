@@ -22,7 +22,7 @@ collections:
   models:
     title: Models
     position: 4
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
