@@ -1,7 +1,11 @@
 ---
-title: Other Examples
+title: Other Languages
 position: 99.0
-description: Other examples for GraphQL queries using Memair
+description: Any HTTP or GraphQL client works
 ---
 
-If you are using another language, please [contact us](https://blog.memair.com/community/contact) and we will create supporting documentation. Alternatively, I'll buy you a few drinks of your choice if you create the documentation and submit a [PR](https://github.com/memair/docs).
+Any language that can send an HTTPS POST with a JSON body can use the API. The [curl](#graphqlcurl), [Python](#graphqlpython) and [Ruby](#graphqlruby) examples show the whole request. GraphQL client libraries, such as those listed on [graphql.org](https://graphql.org/community/tools-and-libraries/), work too: point them at `https://memair.com/graphql` and add the `Authorization` header.
+
+The endpoint answers introspection queries, so tools that generate client code from a schema can read it with any valid token.
+
+To add an example for another language, open a [pull request](https://github.com/memair/docs/pulls).
